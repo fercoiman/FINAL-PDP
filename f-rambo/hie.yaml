@@ -1,0 +1,7 @@
+cradle:
+  stack:
+    - path: "./src"
+      component: "f-rambo:lib"
+
+    - path: "./test"
+      component: "f-rambo:test:f-rambo-test"
