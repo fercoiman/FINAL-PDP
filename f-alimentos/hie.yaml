@@ -1,0 +1,7 @@
+cradle:
+  stack:
+    - path: "./src"
+      component: "f-alimentos:lib"
+
+    - path: "./test"
+      component: "f-alimentos:test:f-alimentos-test"
