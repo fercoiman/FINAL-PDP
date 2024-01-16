@@ -1,7 +1,7 @@
 object julieta{
 	var tickets = 15
 	var fuerza = 80
-	var property punteria = 7
+	var property punteria = 20
 	var property cansancio = 0 
 	
 	method tickets(){
@@ -15,7 +15,23 @@ object julieta{
 		juego.otorgarPremio(self)
 		juego.actualizarCansancio(self)	
 	}
+	
+	method puedeCanjearPremio(premio){
+		if (premio.costo() >= self.tickets()){
+			return true
+		}
+		else {
+			return false
+		}
+	}
 }
+
+
+object gerundio{
+	method puedeCanjearPremio(premio){
+			return true
+		}
+	}
 
 
 object tiroAlBlanco{
@@ -29,10 +45,8 @@ object tiroAlBlanco{
 		jugador.cansancio(cansancio)
 		}
 	}
-	
 
 object pruebaDeFuerza{
-	
 	method otorgarPremio(jugador){
 		var premio = 20
 		if (jugador.fuerza() >= 75){
@@ -43,11 +57,35 @@ object pruebaDeFuerza{
 		const cansancio = 8 + jugador.cansancio()
 		jugador.cansancio(cansancio)
 		}
-	
 }
 
 object ruedaDeLaFortuna{
-	
+	var premio
+	var diasDesdeUltimoMantenimiento = 30
+	method otorgarPremio(jugador){
+		premio = 1.randomUpTo(20)
+		jugador.tickets(premio)
+	}
+	method actualizarCansancio(jugador){
+		if(diasDesdeUltimoMantenimiento > 20){
+			var cansancio = 1
+		}
+		else { 
+			var cansancio = 0
+		}
+		jugador.cansancio(cansancio)
+	}
+}
+// ----------------------
+// PREMIOS
+// ----------------------	
+
+object ositoDePeluche{
+	var property costo = 45	
 }
 
-	
+object taladroRotoPercutor{
+	var cotizacionDolar = 1150
+	var costo = 4 * cotizacionDolar + 7
+	method costo() = costo
+}
