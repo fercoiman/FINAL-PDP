@@ -1,6 +1,6 @@
 object julieta{
 	var tickets = 15
-	var fuerza = 80
+	const property fuerza = 80
 	var property punteria = 20
 	var property cansancio = 0 
 	
@@ -17,7 +17,7 @@ object julieta{
 	}
 	
 	method puedeCanjearPremio(premio){
-		if (premio.costo() >= self.tickets()){
+		if (premio.costo() <= self.tickets()){
 			return true
 		}
 		else {
@@ -63,7 +63,7 @@ object ruedaDeLaFortuna{
 	var premio
 	var diasDesdeUltimoMantenimiento = 30
 	method otorgarPremio(jugador){
-		premio = 1.randomUpTo(20)
+		premio = 1.randomUpTo(20).roundUp(0)
 		jugador.tickets(premio)
 	}
 	method actualizarCansancio(jugador){
