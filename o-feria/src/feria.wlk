@@ -1,8 +1,9 @@
 object julieta{
 	var tickets = 15
-	const property fuerza = 80
-	var property punteria = 20
 	var property cansancio = 0 
+	
+	method punteria() = 20
+	method fuerza() = 80 - cansancio
 	
 	method tickets(){
 		return tickets
@@ -66,6 +67,7 @@ object ruedaDeLaFortuna{
 		premio = 1.randomUpTo(20).roundUp(0)
 		jugador.tickets(premio)
 	}
+	
 	method actualizarCansancio(jugador){
 		if(diasDesdeUltimoMantenimiento > 20){
 			var cansancio = 1
@@ -88,4 +90,11 @@ object taladroRotoPercutor{
 	var cotizacionDolar = 1150
 	var costo = 4 * cotizacionDolar + 7
 	method costo() = costo
+}
+
+class Vaca{
+	method estaContenta(){}
+	method litrosDeLeche(){}
+	method ordeniar(){}
+	
 }
