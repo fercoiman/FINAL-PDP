@@ -35,19 +35,17 @@ object guerrero{
 	method esGroso(personaje) = personaje.fuerza() >50
 }
 
+object brujo{
+	method potencialExtra() = 0
+	method esGroso(personaje) = true
+}
 
-object cazador{
+class Cazador{
 	var property mascota
 	method potencialExtra() = mascota.potencialOfensivo()
 	method esGroso() = mascota.esLongeva()
 	
 }
-
-object brujo{
-	method potencialExtra() = 0
-	method esGroso() = true
-}
-
 // -----------------------
 // -----------------------
 
@@ -70,6 +68,26 @@ class Mascota{
 }
 
 // -----------------------
+// ZONAS
+// -----------------------
+class Zona {
+	method potencialDefensivo()
+}
+
+class Ciudad  inherits Zona {
+	override method potencialDefensivo(){}
+}
+
+class Aldea inherits Zona {
+	var habitantes
+	var property maximoDeHabitantes
+    override method potencialDefensivo(){}
+	
+}
+
+
+
+// -----------------------
 // INVASION
 // -----------------------
 
@@ -77,9 +95,24 @@ class Mascota{
 
 
 class Ejercito {
-	const integrantes = []
-	method integrantes() {return integrantes}
+	const property integrantes = []
+
 	method potencialOfensivoTotal() = integrantes.map{personaje => personaje.potencialOfensivo()}.sum()
+	method potencialOfensivoTotal2() = integrantes.sum{personaje => personaje.potencialOfensivo()}
 	
+	
+	method atacarLocalidad(localidad){
+		if(self.potencialOfensivoTotal() > localidad.potencialDefensivo()){
+			localidad.serOcupadaPor(self)
+		}
+		
+	}
 	
 }
+	
+class Localidad{
+	var ejercitoDefensor = []
+	var property tipoLocalidad
+	method potencialOfensivoTotal() = ejercitoDefensor.map{personaje => personaje.potencialOfensivo()}.sum()
+	
+}	
